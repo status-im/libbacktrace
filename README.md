@@ -1,7 +1,17 @@
 # libbacktrace
+
 A C library that may be linked into a C/C++ program to produce symbolic backtraces
 
-Initially written by Ian Lance Taylor <iant@golang.org>.
+Initially written by Ian Lance Taylor <iant@golang.org>, then [forked by Rust
+developers](https://github.com/rust-lang-nursery/libbacktrace/tree/rust-snapshot-2018-05-22)
+in May 2018 and forked again by Nim developers in February 2020 (because the
+Rust people moved on to their own implementation). Ian started writing [his own
+version of macOS
+support](https://github.com/ianlancetaylor/libbacktrace/commit/4e548e735f9502978ad70d59d6ebe18f55650ee9),
+a couple of days before this last fork was made. If that's successful, we'll be
+happy to go back to using upstream.
+
+## Original README
 
 This is version 1.0.
 It is likely that this will always be version 1.0.
