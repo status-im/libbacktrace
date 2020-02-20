@@ -602,9 +602,11 @@ coff_add (struct backtrace_state *state, int descriptor,
   const b_coff_section_header *sects;
   struct backtrace_view str_view;
   int str_view_valid;
-  size_t str_size;
+  uint32_t str_size;
   off_t str_off;
-  struct backtrace_view syms_view;
+  // NOTE: upstream doesn't have `{0}`, this is a fix for Rust issue #39468.
+  //       If syms_view is not initialized, then `free(syms_view.base)` may segfault later.
+  struct backtrace_view syms_view = {0};
   off_t syms_off;
   size_t syms_size;
   int syms_view_valid;

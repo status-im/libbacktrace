@@ -5429,7 +5429,7 @@ else
     lt_cv_sys_max_cmd_len=8192;
     ;;
 
-  netbsd* | freebsd* | openbsd* | darwin* | dragonfly*)
+  netbsd* | freebsd* | openbsd* | darwin* | dragonfly* | bitrig*)
     # This has been around since 386BSD, at least.  Likely further.
     if test -x /sbin/sysctl; then
       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
@@ -8884,7 +8884,7 @@ if test -z "$aix_libpath"; then aix_libpath="/usr/lib:/lib"; fi
       ;;
 
     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
-    freebsd* | dragonfly*)
+    freebsd* | dragonfly* | openbsd* | bitrig*)
       archive_cmds='$CC -shared -o $lib $libobjs $deplibs $compiler_flags'
       hardcode_libdir_flag_spec='-R$libdir'
       hardcode_direct=yes
@@ -11472,6 +11472,9 @@ pecoff) FORMAT_FILE="pecoff.lo"
 xcoff*) FORMAT_FILE="xcoff.lo"
         backtrace_supports_data=no
         ;;
+macho*) FORMAT_FILE="macho.lo"
+        backtrace_supports_data=no
+        ;;
 *) { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: could not determine output file type" >&5
 $as_echo "$as_me: WARNING: could not determine output file type" >&2;}
    FORMAT_FILE="unknown.lo"
@@ -11554,6 +11557,12 @@ fi
 
   fi
 fi
+
+case "${host_os}" in
+darwin*)
+  have_mmap=no ;;
+esac
+
 if test "$have_mmap" = "no"; then
   VIEW_FILE=read.lo
   ALLOC_FILE=alloc.lo
@@ -11569,7 +11578,7 @@ else
 
 _ACEOF
 if ac_fn_c_try_cpp "$LINENO"; then :
-  ALLOC_FILE=mmap.lo
+  ALLOC_FILE=alloc.lo
 else
   ALLOC_FILE=alloc.lo
 fi
