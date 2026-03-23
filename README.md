@@ -1,3 +1,5 @@
+Archival notice: upstream libbacktrace now supports mac, obsoleting this fork.
+
 # libbacktrace
 
 A C library that may be linked into a C/C++ program to produce symbolic backtraces
